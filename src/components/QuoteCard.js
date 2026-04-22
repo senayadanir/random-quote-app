@@ -1,55 +1,41 @@
 "use client";
 
-import { quotes as initialQuotes } from "@/quotes";
 import { Button } from "@/components/Button";
 import { H3 } from "@/components/typography/H3";
 import { H6 } from "@/components/typography/H6";
-import { useState } from "react";
-import { getRandomNumber } from "@/utils/helper-functions";
-import { LikeButton } from "./LikeButton";
+import { EmojiButton } from "./EmojiButton";
+import { useContext } from "react";
+import { QuotesContext } from "@/app/QuotesContext";
 
 export function QuoteCard() {
-  const [quotes, setQuotes] = useState(
-    initialQuotes.map((quote) => ({ ...quote, likes: quote.likeCount || 0 })),
-  );
-  const [quoteIndex, setQuoteIndex] = useState(0);
-
-  const currentQuote = quotes[quoteIndex];
-
-  function handleClick() {
-    let nextQuoteIndex;
-
-    do {
-      nextQuoteIndex = getRandomNumber(0, initialQuotes.length);
-    } while (nextQuoteIndex === quoteIndex);
-
-    if (!isNaN(nextQuoteIndex)) {
-      setQuoteIndex(nextQuoteIndex);
-    }
-
-    console.log("New index is:", nextQuoteIndex);
-  }
-
-  function increaseNumber() {
-    const updatedQuotes = [...quotes];
-    updatedQuotes[quoteIndex].likes += 1;
-    setQuotes(updatedQuotes);
-  }
+  const {
+    quotes,
+    quoteIndex,
+    handleQuoteIndexUpdate,
+    handleLikeQuote,
+    likedQuotes,
+    handleRemoveLike,
+    unlikedQuotes,
+    handleUnlikeQuote,
+  } = useContext(QuotesContext);
+  const { quote, author, likeCount, unlikeCount } = quotes[quoteIndex];
 
   return (
-    <section className="flex flex-col gap-2 bg-slate-50/50 rounded-md p-10 shadow-lg">
-      <div className="place-items-end">
-        <LikeButton
-          symbol="♡"
-          counter={currentQuote.likes}
-          onClick={increaseNumber}
+    <section className="flex flex-col gap-2 bg-slate-50/80 rounded-md p-10 shadow-lg">
+      <div className="flex place-items-end">
+        <EmojiButton
+          symbol="👎"
+          counter={unlikeCount}
+          onClick={handleUnlikeQuote}
         />
+
+        <EmojiButton symbol="♡" counter={likeCount} onClick={handleLikeQuote} />
       </div>
 
-      <H3 element="h3">{currentQuote.quote}</H3>
-      <H6> {`- ${currentQuote.author}`} </H6>
+      <H3 element="h3">{quote}</H3>
+      <H6> {`- ${author}`} </H6>
       <div className="flex flex-col mt-6">
-        <Button variant={"primary"} onClick={handleClick}>
+        <Button variant={"primary"} onClick={handleQuoteIndexUpdate}>
           {" "}
           Next Quote{" "}
         </Button>
