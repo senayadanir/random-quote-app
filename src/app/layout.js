@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { QuotesContextProvider } from "@/app/QuotesContext";
-import Link from "next/link";
+import { QuotesContextProvider } from "./QuotesContext";
+import { NavbarMenu } from "./NavbarMenu";
+import { ThemeProvider } from "./ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,24 +23,39 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased `}
     >
-      <nav className="bg-slate-50/80  ">
-        <ul className="flex justify-between max-w-2xl w-full p-4 mx-auto">
-          <li>
-            <Link href={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link href={"/user/quotes/liked"}>Liked Quotes</Link>
-          </li>
-          <li>
-            <Link href={"/user/quotes/unliked"}>Unliked Quotes</Link>
-          </li>
-        </ul>
-      </nav>
-      <QuotesContextProvider>
-        <body className="min-h-full flex flex-col">{children}</body>
-      </QuotesContextProvider>
+      <body
+        className="min-h-full flex flex-col "
+        suppressHydrationWarning={true}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <QuotesContextProvider>
+            <NavbarMenu />
+            {/* <nav className="bg-slate-50/80  ">
+            <ul className="flex justify-between max-w-2xl w-full p-4 mx-auto">
+              <li>
+                <Link href={"/"}>Home</Link>
+              </li>
+              <li>
+                <Link href={"/user/quotes/liked"}>Liked Quotes</Link>
+              </li>
+              <li>
+                <Link href={"/user/quotes/unliked"}>Unliked Quotes</Link>
+              </li>
+            </ul>
+          </nav> */}
+
+            {children}
+          </QuotesContextProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

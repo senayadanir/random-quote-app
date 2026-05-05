@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useState } from "react";
-import { quotes as initialQuotes } from "@/quotes";
-import { getRandomNumber } from "@/utils/helper-functions";
+import { quotes as initialQuotes } from "../quotes.js";
+import { getRandomNumber } from "../utils/helper-functions.js";
 
 export const QuotesContext = createContext({});
 
@@ -65,8 +65,18 @@ export function QuotesContextProvider({ children }) {
     setQuotes(updatedQuotes);
   }
 
+  function handleRemoveUnlike(targetIndex) {
+    const updatedQuotes = quotes.map((quote, id) => {
+      if (id === targetIndex) {
+        return { ...quote, unlikeCount: 0 };
+      }
+      return quote;
+    });
+    setQuotes(updatedQuotes);
+  }
+
   return (
-    <QuotesContext
+    <QuotesContext.Provider
       value={{
         quotes,
         quoteIndex,
@@ -76,9 +86,10 @@ export function QuotesContextProvider({ children }) {
         handleRemoveLike,
         unlikedQuotes,
         handleUnlikeQuote,
+        handleRemoveUnlike,
       }}
     >
       {children}
-    </QuotesContext>
+    </QuotesContext.Provider>
   );
 }
