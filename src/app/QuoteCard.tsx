@@ -8,17 +8,19 @@ import { cn } from "../lib/utils";
 
 
 interface QuoteCardProps {
-  quote: string,
-  author: string,
-  isLiked: boolean,
-  handleToggleLike: () => void,
-  handleQuoteIndexUpdate: () => void
+  quote: string;
+  author: string;
+  isLiked: boolean;
+  quoteIndex: number;
+  handleToggleLike: (index: number) => void;
+  handleQuoteIndexUpdate: () => void;
 } 
 
 export function QuoteCard({
   quote,
   author,
   isLiked,
+  quoteIndex,
   handleToggleLike,
   handleQuoteIndexUpdate,
 }: QuoteCardProps) {
@@ -38,7 +40,7 @@ export function QuoteCard({
               />
             }
             counter={isLiked ? 1 : 0}
-            onClick={() => handleToggleLike()}
+            onClick={() => handleToggleLike(quoteIndex)}
           />
         </div>
         <H3 element="h3" >
