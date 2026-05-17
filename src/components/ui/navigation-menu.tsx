@@ -2,10 +2,15 @@ import * as React from "react";
 import { cva } from "class-variance-authority";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 
-import { cn } from "../../lib/utils.js";
+import { cn } from "../../lib/utils";
 import { CaretDownIcon } from "@phosphor-icons/react";
 
-function NavigationMenu({ className, children, viewport = true, ...props }) {
+function NavigationMenu({
+  className = "",
+  children,
+  viewport = true,
+  ...props
+}) {
   return (
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
@@ -35,7 +40,7 @@ function NavigationMenuList({ className, ...props }) {
   );
 }
 
-function NavigationMenuItem({ className, ...props }) {
+function NavigationMenuItem({ className = "", ...props }) {
   return (
     <NavigationMenuPrimitive.Item
       data-slot="navigation-menu-item"
@@ -78,7 +83,7 @@ function NavigationMenuContent({ className, ...props }) {
   );
 }
 
-function NavigationMenuViewport({ className, ...props }) {
+function NavigationMenuViewport({ className = '', ...props }) {
   return (
     <div
       className={cn(

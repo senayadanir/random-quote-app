@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { QuotesContextProvider } from "./QuotesContext";
+import { QuotesContextProvider } from "@/app/QuotesContext";
 import { NavbarMenu } from "./NavbarMenu";
 import { ThemeProvider } from "./ThemeProvider";
 
@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
                 <Link href={"/user/quotes/liked"}>Liked Quotes</Link>
               </li>
               <li>
-                <Link href={"/user/quotes/unliked"}>Unliked Quotes</Link>
+                <Link href={"/user/quotes/disliked"}>Disliked Quotes</Link>
               </li>
             </ul>
           </nav> */}

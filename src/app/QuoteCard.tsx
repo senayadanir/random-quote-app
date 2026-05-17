@@ -1,58 +1,50 @@
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
-import { H3 } from "../components/typography/H3.js";
-import { H6 } from "../components/typography/H6.js";
-import { EmojiButton } from "../components/EmojiButton";
-import { Heart, HeartOff } from "lucide-react";
+import { H3 } from "../components/typography/H3";
+import { H6 } from "../components/typography/H6";
+import { ActionButton } from "../components/ActionButton";
+import { Heart } from "lucide-react";
 import { cn } from "../lib/utils";
+
+
+interface QuoteCardProps {
+  quote: string,
+  author: string,
+  isLiked: boolean,
+  handleToggleLike: () => void,
+  handleQuoteIndexUpdate: () => void
+} 
 
 export function QuoteCard({
   quote,
   author,
-  likeCount,
-  unlikeCount,
-  handleLikeQuote,
-  handleUnlikeQuote,
+  isLiked,
+  handleToggleLike,
   handleQuoteIndexUpdate,
-}) {
+}: QuoteCardProps) {
   return (
     <Card size="lg" className="mx-auto w-full max-w-xl">
       <CardContent className={"flex flex-col gap-2"}>
         <div className="flex justify-end">
-          <EmojiButton
-            symbol={
-              <HeartOff
-                className={cn(
-                  "w-5 h-5 transition-colors duration-300",
-                  unlikeCount > 0
-                    ? "fill-amber-600 text-amber-600 scale-110"
-                    : "text-slate-400 hover:text-amber-500",
-                )}
-              />
-            }
-            counter={unlikeCount}
-            onClick={handleUnlikeQuote}
-          />
-
-          <EmojiButton
+          <ActionButton
             symbol={
               <Heart
                 className={cn(
                   "w-5 h-5 transition-colors duration-300",
-                  likeCount > 0
+                  isLiked //
                     ? "fill-red-500 text-red-500"
                     : "text-slate-400",
                 )}
               />
             }
-            counter={likeCount}
-            onClick={handleLikeQuote}
+            counter={isLiked ? 1 : 0}
+            onClick={() => handleToggleLike()}
           />
         </div>
-        <H3 element="h3" className="text-current dark:text-white">
+        <H3 element="h3" >
           {quote}
         </H3>
-        <H6 className="text-current dark:text-white"> {`- ${author}`} </H6>
+        <H6 element='h6'> {`- ${author}`} </H6>
         <div className="flex flex-col mt-6">
           <Button
             size="sm"

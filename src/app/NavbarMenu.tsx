@@ -1,6 +1,6 @@
 "use client";
 
-import { ModeToggle } from "../components/ui/mode-toggle.jsx";
+import { ModeToggle } from "../components/ui/mode-toggle";
 import Link from "next/link";
 
 import {
@@ -9,7 +9,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "../components/ui/navigation-menu.jsx";
+} from "../components/ui/navigation-menu";
 
 const appRoots = [
   {
@@ -17,12 +17,8 @@ const appRoots = [
     url: "/",
   },
   {
-    name: "Liked Quotes",
+    name: "My Favorites",
     url: "/user/quotes/liked",
-  },
-  {
-    name: "Unliked Quotes",
-    url: "/user/quotes/unliked",
   },
 ];
 
@@ -54,13 +50,13 @@ export function NavbarMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/user/quotes/unliked">Unliked Quotes</Link>
+            <Link href="/user/quotes/disliked">Disliked Quotes</Link>
           </NavigationMenuLink>
         </NavigationMenuItem> */}
           </NavigationMenuList>
         </NavigationMenu>
-        <div className="ml-auto">
-          <ModeToggle className="transition ease-in duration-300" />
+        <div className="ml-auto transition ease-in duration-300">
+          <ModeToggle />
         </div>
       </div>
     </header>

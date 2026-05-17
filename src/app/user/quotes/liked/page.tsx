@@ -1,21 +1,21 @@
 "use client";
 
 import { useContext } from "react";
-import { H1 } from "../../../../components/typography/H1.js";
-import { H3 } from "../../../../components/typography/H3.js";
-import { H6 } from "../../../../components/typography/H6.js";
-import { QuotesContext } from "../../../QuotesContext.js";
+import { H1 } from "../../../../components/typography/H1";
+import { H3 } from "../../../../components/typography/H3";
+import { H6 } from "../../../../components/typography/H6";
+import { QuotesContext } from "../../../QuotesContext";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Button } from "../../../../components/ui/button";
 import { Heart, Trash2 } from "lucide-react";
 
 export default function LikedQuotesPage() {
-  const { likedQuotes, quotes, handleRemoveLike } = useContext(QuotesContext);
+  const { likedQuotes, quotes, handleToggleLike } = useContext(QuotesContext);
 
   return (
     <main className="min-h-screen flex flex-col items-center py-12 px-4">
       <div className="mb-10 text-center">
-        <H1 element="h1">Liked Quotes</H1>
+        <H1 element="h1">Favorites</H1>
         <p className="text-slate-500 mt-2 font-medium">
           Your curated collection of favorite insights.
         </p>
@@ -38,17 +38,14 @@ export default function LikedQuotesPage() {
                   <div className="flex justify-end">
                     <div className="flex items-center gap-1 text-red-500 bg-red-50 px-3 py-2 dark:bg-red-50/10 rounded-full">
                       <Heart className="w-4 h-4 fill-current" />
-                      <span className="text-xs font-bold ">
-                        {quoteObj.likeCount}
-                      </span>
                     </div>
                   </div>
 
-                  <H3 element="h3" className="text-current dark:text-white">
+                  <H3 element="h3" >
                     {quoteObj.quote}
                   </H3>
 
-                  <H6 className="text-current dark:text-white italic">
+                  <H6 element="italic">
                     {`- ${quoteObj.author}`}
                   </H6>
 
@@ -57,7 +54,7 @@ export default function LikedQuotesPage() {
                       size="sm"
                       variant="destructive"
                       className="w-full border-none py-5 font-bold transform hover:scale-102 transition-all ease-out duration-300 rounded-lg shadow-sm"
-                      onClick={() => handleRemoveLike(originalIndex)}
+                      onClick={() => handleToggleLike(originalIndex)}
                     >
                       <Trash2 className="w-4 h-4 mr-2" />
                       Remove from Favorites
