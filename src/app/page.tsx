@@ -1,8 +1,10 @@
 "use client";
 
+
 import { QuoteCard } from "./QuoteCard";
 import { useContext } from "react"; 
 import { QuotesContext } from "./QuotesContext"; 
+
 
 export default function Home() {
   const { quotes, quoteIndex, handleToggleLike, handleQuoteIndexUpdate } =
@@ -17,8 +19,7 @@ export default function Home() {
         author={author}
         isLiked={isLiked}
         handleToggleLike={() => handleToggleLike(quoteIndex)}
-        handleQuoteIndexUpdate={handleQuoteIndexUpdate}
-      />
+        handleQuoteIndexUpdate={handleQuoteIndexUpdate} quoteIndex={0}      />
     </main>
   );
 }
