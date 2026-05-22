@@ -1,7 +1,7 @@
 export interface Quote {
   quote: string,
   author: string,
-  isLiked?: boolean
+  likedBy?: string[];
 }
 
 export const quotes: Quote[] = [
