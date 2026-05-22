@@ -41,13 +41,9 @@ export default function LikedQuotesPage() {
                     </div>
                   </div>
 
-                  <H3 element="h3" >
-                    {quoteObj.quote}
-                  </H3>
+                  <H3 element="h3">{quoteObj.quote}</H3>
 
-                  <H6 element="italic">
-                    {`- ${quoteObj.author}`}
-                  </H6>
+                  <H6 element="italic">{`- ${quoteObj.author}`}</H6>
 
                   <div className="flex flex-col mt-6">
                     <Button
