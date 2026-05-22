@@ -2,6 +2,7 @@
 
 import { ModeToggle } from "../components/ui/mode-toggle";
 import Link from "next/link";
+
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 import {
@@ -29,6 +30,7 @@ export function NavbarMenu() {
   const { user, isLoading } = useUser();
 
   if (isLoading) return <></>;
+
   return (
     <header className="w-full border-b bg-background/70 sticky top-0 z-50 backdrop-blur">
       <div className="flex h-16 max-w-6xl mx-auto items-center justify-between px-4">

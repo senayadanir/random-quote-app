@@ -2,6 +2,7 @@ export interface Quote {
   quote: string,
   author: string,
   likedBy?: string[];
+
 }
 
 export const quotes: Quote[] = [

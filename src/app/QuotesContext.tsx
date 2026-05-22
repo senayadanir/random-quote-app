@@ -3,6 +3,7 @@
 import { createContext, ReactNode, useState } from "react";
 import { quotes as initialQuotes, type Quote } from "@/quotes";
 import { getRandomNumber } from "../utils/helper-functions";
+
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 interface QuotesContextInterface {
@@ -16,6 +17,7 @@ interface QuotesContextInterface {
 const InitialQuotesContext = {
   quotes: [],
   quoteIndex: 0,
+
   handleQuoteIndexUpdate: () => console.log(""),
   handleToggleLike: () => console.log(""),
   likedQuotes: [],
