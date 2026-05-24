@@ -6,7 +6,6 @@ import { ActionButton } from "../components/ActionButton";
 import { Heart } from "lucide-react";
 import { cn } from "../lib/utils";
 
-
 interface QuoteCardProps {
   quote: string;
   author: string;
@@ -14,7 +13,7 @@ interface QuoteCardProps {
   quoteIndex: number;
   handleToggleLike: (index: number) => void;
   handleQuoteIndexUpdate: () => void;
-} 
+}
 
 export function QuoteCard({
   quote,
@@ -34,8 +33,8 @@ export function QuoteCard({
                 className={cn(
                   "w-5 h-5 transition-colors duration-300",
                   isLiked //
-                    ? "fill-red-500 text-red-500"
-                    : "text-slate-400",
+                    ? "fill-destructive text-destructive"
+                    : "text-muted-foreground fill-none",
                 )}
               />
             }
@@ -43,10 +42,8 @@ export function QuoteCard({
             onClick={() => handleToggleLike(quoteIndex)}
           />
         </div>
-        <H3 element="h3" >
-          {quote}
-        </H3>
-        <H6 element='h6'> {`- ${author}`} </H6>
+        <H3 element="h3">{quote}</H3>
+        <H6 element="h6"> {`- ${author}`} </H6>
         <div className="flex flex-col mt-6">
           <Button
             size="sm"

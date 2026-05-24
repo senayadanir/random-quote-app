@@ -3,7 +3,7 @@ export interface RandomNumberBounds {
   max: number;
 }
 
-export function getRandomNumber(min: number, max: number): number {
+export function getRandomNumber({min, max}: RandomNumberBounds): number {
   if (!max) return 0;
   return Math.floor(Math.random() * (max - min)) + min;
 }

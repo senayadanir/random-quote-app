@@ -1,4 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Inter,
+  Nunito,
+  Source_Code_Pro,
+} from "next/font/google";
 import "./globals.css";
 import { QuotesContextProvider } from "@/app/QuotesContext";
 import { NavbarMenu } from "./NavbarMenu";
@@ -14,6 +20,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const nunito = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin"],
+});
+
+const sourceCodePro = Source_Code_Pro({
+  variable: "--font-code",
+  subsets: ["latin"],
+});
+
 export const metadata = {
   title: "Random Quotes App",
   description: "Random Quotes Application 170426",
@@ -24,7 +45,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased `}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${nunito.variable} ${sourceCodePro.variable} h-full antialiased `}
     >
       <body
         className="min-h-full flex flex-col "
@@ -38,20 +59,6 @@ export default function RootLayout({ children }) {
         >
           <QuotesContextProvider>
             <NavbarMenu />
-            {/* <nav className="bg-slate-50/80  ">
-            <ul className="flex justify-between max-w-2xl w-full p-4 mx-auto">
-              <li>
-                <Link href={"/"}>Home</Link>
-              </li>
-              <li>
-                <Link href={"/user/quotes/liked"}>Liked Quotes</Link>
-              </li>
-              <li>
-                <Link href={"/user/quotes/disliked"}>Disliked Quotes</Link>
-              </li>
-            </ul>
-          </nav> */}
-
             {children}
           </QuotesContextProvider>
         </ThemeProvider>
