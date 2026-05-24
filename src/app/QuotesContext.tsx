@@ -39,7 +39,7 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
     let nextQuoteIndex: number;
 
     do {
-      nextQuoteIndex = getRandomNumber(0, quotes.length);
+      nextQuoteIndex = getRandomNumber({ min: 0, max: quotes.length });
     } while (nextQuoteIndex === quoteIndex);
 
     if (!isNaN(nextQuoteIndex)) {
