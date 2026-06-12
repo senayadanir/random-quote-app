@@ -3,6 +3,8 @@
 import { createContext, ReactNode, useState } from "react";
 import { quotes as initialQuotes, type Quote } from "@/quotes";
 import { getRandomNumber } from "../utils/helper-functions";
+import { redirect } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 import { useUser } from "@auth0/nextjs-auth0/client";
 
@@ -39,7 +41,7 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
     let nextQuoteIndex: number;
 
     do {
-      nextQuoteIndex = getRandomNumber(0, quotes.length);
+      nextQuoteIndex = getRandomNumber({ min: 0, max: quotes.length });
     } while (nextQuoteIndex === quoteIndex);
 
     if (!isNaN(nextQuoteIndex)) {
@@ -52,8 +54,9 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
   function handleToggleLike(targetIndex: number) {
     const userId = user?.sub;
     if (!userId) {
-      window.location.assign("/auth/login");
-      return;
+
+      redirect("/auth/login");
+
     }
 
     const updatedQuotes = quotes.map((quote, id) => {
