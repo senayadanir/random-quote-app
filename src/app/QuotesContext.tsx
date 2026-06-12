@@ -3,7 +3,7 @@
 import { createContext, ReactNode, useState } from "react";
 import { quotes as initialQuotes, type Quote } from "@/quotes";
 import { getRandomNumber } from "../utils/helper-functions";
-
+import { redirect } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 interface QuotesContextInterface {
@@ -52,8 +52,7 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
   function handleToggleLike(targetIndex: number) {
     const userId = user?.sub;
     if (!userId) {
-      window.location.assign("/auth/login");
-      return;
+      redirect("/auth/login");
     }
 
     const updatedQuotes = quotes.map((quote, id) => {
