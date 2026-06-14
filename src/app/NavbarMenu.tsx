@@ -50,6 +50,16 @@ export function NavbarMenu() {
                 </NavigationMenuItem>
               );
             })}
+            {!!user && (
+              <NavigationMenuItem>
+                <NavigationMenuLink
+                  asChild
+                  className={`${navigationMenuTriggerStyle()} font-semibold rounded-lg transition ease-in duration-200 `}
+                >
+                  <Link href="/user/quotes/new">Add New Quote</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
 

@@ -6,6 +6,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@source "../app";
+@source "../components";
+@source "../src";
+
 @theme inline {
   --color-background: var(--background);
   --color-background-2: var(--background-2);

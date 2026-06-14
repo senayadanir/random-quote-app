@@ -17,7 +17,7 @@ export default async function ProtectedLayout({ children }) {
     return (
       <p>
         An error occured, try to refresh the page and{" "}
-        <a href="/auth/login">login in</a> again{" "}
+        <a href="/auth/login">log in</a> again{" "}
       </p>
     );
   }

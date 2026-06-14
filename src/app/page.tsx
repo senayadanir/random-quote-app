@@ -22,7 +22,7 @@ export default function Home() {
       : false;
 
   return (
-    <main className="min-h-screen flex items-center justify-center">
+    <main className="min-h-[calc(100vh-64px)] flex items-center justify-center">
       <QuoteCard
         quote={quote}
         author={author}
