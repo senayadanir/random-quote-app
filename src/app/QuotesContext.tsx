@@ -1,17 +1,18 @@
 "use client";
 
 import { createContext, ReactNode, useState } from "react";
-import { quotes as initialQuotes, type Quote } from "@/quotes";
+import { quotes as initialQuotes } from "@/quotes";
 import { getRandomNumber } from "../utils/helper-functions";
 import { redirect } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { type TQuote } from "@/types/quotes";
 
 interface QuotesContextInterface {
-  quotes: Quote[];
+  quotes: TQuote[];
   quoteIndex: number;
   handleQuoteIndexUpdate: () => void;
   handleToggleLike: (targetIndex: number) => void;
-  likedQuotes: Quote[];
+  likedQuotes: TQuote[];
 }
 
 const InitialQuotesContext = {
@@ -28,7 +29,7 @@ export const QuotesContext =
 
 export function QuotesContextProvider({ children }: { children: ReactNode }) {
   const [quoteIndex, setQuoteIndex] = useState(0);
-  const [quotes, setQuotes] = useState<Quote[]>(initialQuotes);
+  const [quotes, setQuotes] = useState<TQuote[]>(initialQuotes);
   const { user } = useUser();
   const likedQuotes = quotes.filter((quote) =>
     quote.likedBy?.includes(user?.sub ?? ""),
