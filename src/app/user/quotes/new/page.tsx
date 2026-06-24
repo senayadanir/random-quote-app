@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import addNewQuote from "@/app/user/quotes/new/action";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { redirect, RedirectType } from "next/navigation";
@@ -38,6 +38,7 @@ const initialAddNewQuoteState: TAddNewQuoteState = {
 };
 
 export default function CreateQuotePage() {
+  const [resetCounter, setResetCounter] = useState(0);
   const [state, dispatchAction, isPending] = useActionState<
     TAddNewQuoteState,
     FormData
@@ -45,6 +46,8 @@ export default function CreateQuotePage() {
 
   const {
     register,
+    reset,
+
     formState: { errors: clientSideErrors },
   } = useForm<z.infer<typeof newQuoteSchema>>({
     mode: "onBlur",
@@ -56,6 +59,7 @@ export default function CreateQuotePage() {
     state.data?.category ?? "",
     categoryErrors?.join("|") ?? "",
     state.message ?? "",
+    resetCounter,
   ].join(":");
 
   if (isPending) {
@@ -63,13 +67,30 @@ export default function CreateQuotePage() {
   }
 
   const handleAddNewQuote = () => {
-    redirect("./new", RedirectType.replace);
+    redirect("./new/success", RedirectType.replace);
   };
 
   console.log("Current state after action:", state);
 
   return (
-    <main className=" min-h-[calc(100vh-64px)] flex-col justify-items-center align-items ">
+    <main className=" min-h-[calc(100vh-130px)] flex flex-col justify-center items-center">
+      {state.message && (
+        <div
+          className={`my-6 flex items-center gap-3 rounded-xl border p-4 text-sm font-medium shadow-sm transition-all animate-in fade-in slide-in-from-top-2 max-w-md w-full ${
+            state.success
+              ? "bg-primary/10 border-primary/20 text-primary"
+              : "bg-destructive/10 border-destructive/20 text-destructive"
+          }`}
+        >
+          {state.success ? (
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
+          ) : (
+            <AlertCircle className="h-5 w-5 shrink-0 text-destructive" />
+          )}
+          <p className="leading-relaxed">{state.message}</p>
+        </div>
+      )}
+
       {state.success ? (
         <div className="w-full max-w-md border border-primary/20 rounded-2xl mt-14 p-10 shadow-md bg-primary/10 text-primary items-center">
           <h1>
@@ -77,17 +98,13 @@ export default function CreateQuotePage() {
             Thank you adding a new quote. It's now sent to administator for
             review.{" "}
           </h1>
-          <p className="mt-8">
-            Click{" "}
-            <Button onClick={handleAddNewQuote} className="mt-10 ">
-              here
-            </Button>
-            to add another quote.
-          </p>
+          <Button onClick={handleAddNewQuote} className="mt-10 ">
+            Add another quote
+          </Button>
         </div>
       ) : (
         <form
-          className="w-full max-w-md bg-background border rounded-2xl mt-6 p-10 shadow-md"
+          className="w-full max-w-md bg-background border rounded-2xl p-10 shadow-md"
           action={dispatchAction}
         >
           <FieldGroup>
@@ -217,6 +234,15 @@ export default function CreateQuotePage() {
                         <SelectItem value="identity-kindness">
                           Identity & Kindness
                         </SelectItem>
+                        <SelectItem value="philosophy-wisdom">
+                          Philosophy & Wisdom
+                        </SelectItem>
+                        <SelectItem value="growth-patience">
+                          Growth & Patience
+                        </SelectItem>
+                        <SelectItem value="courage-strength">
+                          Courage & Strength
+                        </SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
@@ -246,29 +272,19 @@ export default function CreateQuotePage() {
               className="flex justify-end gap-3 pt-4"
             >
               <Button type="submit">Create</Button>
-              <Button variant="outline" type="reset">
+              <Button
+                variant="outline"
+                type="reset"
+                onClick={() => {
+                  reset();
+                  setResetCounter((prev) => prev + 1);
+                }}
+              >
                 Clear
               </Button>
             </Field>
           </FieldGroup>
         </form>
-      )}
-
-      {state.message && (
-        <div
-          className={`my-6 flex items-center gap-3 rounded-xl border p-4 text-sm font-medium shadow-sm transition-all animate-in fade-in slide-in-from-top-2 max-w-md w-full ${
-            state.success
-              ? "bg-primary/10 border-primary/20 text-primary"
-              : "bg-destructive/10 border-destructive/20 text-destructive"
-          }`}
-        >
-          {state.success ? (
-            <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
-          ) : (
-            <AlertCircle className="h-5 w-5 shrink-0 text-destructive" />
-          )}
-          <p className="leading-relaxed">{state.message}</p>
-        </div>
       )}
     </main>
   );

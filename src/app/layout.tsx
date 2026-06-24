@@ -9,6 +9,7 @@ import "./globals.css";
 import { QuotesContextProvider } from "@/app/QuotesContext";
 import { NavbarMenu } from "./NavbarMenu";
 import { ThemeProvider } from "./ThemeProvider";
+import { Heart } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,6 +62,21 @@ export default function RootLayout({ children }) {
             <NavbarMenu />
             {children}
           </QuotesContextProvider>
+
+          <footer className="border-t border-border/50 mt-auto py-6 text-center">
+            <p className="text-xs text-muted-foreground">
+              Made with
+              <Heart
+                size={10}
+                className="inline text-destructive fill-destructive mx-0.5"
+              />
+              by
+              <span className="font-semibold text-primary">
+                Random Quote App
+              </span>
+              · {new Date().getFullYear()}
+            </p>
+          </footer>
         </ThemeProvider>
       </body>
     </html>

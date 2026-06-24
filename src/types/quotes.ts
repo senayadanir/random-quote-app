@@ -24,6 +24,9 @@ export const newQuoteSchema = z.object({
       "mindset-belief",
       "life-happiness",
       "identity-kindness",
+      "philosophy-wisdom",
+      "growth-patience",
+      "courage-strength",
     ],
     {
       message: "Please select a valid category from the list.",
@@ -52,7 +55,10 @@ export type TQuoteCategory =
   | "resilience-failure"
   | "mindset-belief"
   | "life-happiness"
-  | "identity-kindness";
+  | "identity-kindness"
+  | "philosophy-wisdom"
+  | "growth-patience"
+  | "courage-strength";
 
 export interface NewQuoteInput {
   author: string;
@@ -61,8 +67,23 @@ export interface NewQuoteInput {
 }
 
 export interface TQuote {
+  _id: unknown;
   quote: string;
   author: string;
   category: TQuoteCategory;
   likedBy?: string[];
+  createdBy: string;
+  adminApproved: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface QuotesContextInterface {
+  quotes: TQuote[];
+  quoteIndex: number;
+  isLoading: boolean;
+  error: string | null;
+  handleQuoteIndexUpdate: () => void;
+  handleToggleLike: (targetIndex: number) => void;
+  likedQuotes: TQuote[];
 }

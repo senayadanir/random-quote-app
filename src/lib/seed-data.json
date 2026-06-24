@@ -1,0 +1,1002 @@
+[
+  {
+    "quote": "Be yourself; everyone else is already taken.",
+    "author": "Oscar Wilde",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The secret of getting ahead is getting started.",
+    "author": "Mark Twain",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "In the middle of difficulty lies opportunity.",
+    "author": "Albert Einstein",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "What you do today can improve all your tomorrows.",
+    "author": "Ralph Marston",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "It always seems impossible until it’s done.",
+    "author": "Nelson Mandela",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "If you can dream it, you can do it.",
+    "author": "Walt Disney",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Stay hungry. Stay foolish.",
+    "author": "Steve Jobs",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Whatever you are, be a good one.",
+    "author": "Abraham Lincoln",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Strive not to be a success, but rather to be of value.",
+    "author": "Albert Einstein",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Simplicity is the ultimate sophistication.",
+    "author": "Leonardo da Vinci",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Life is short. Live it.",
+    "author": "Unknown",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Act as if what you do makes a difference. It does.",
+    "author": "William James",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Turn your wounds into wisdom.",
+    "author": "Oprah Winfrey",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "You miss 100% of the shots you don’t take.",
+    "author": "Wayne Gretzky",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Dream big and dare to fail.",
+    "author": "Norman Vaughan",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Don’t wait. The time will never be just right.",
+    "author": "Napoleon Hill",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Well done is better than well said.",
+    "author": "Benjamin Franklin",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Be the change that you wish to see in the world.",
+    "author": "Often attributed to Gandhi",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Happiness is not by chance, but by choice.",
+    "author": "Jim Rohn",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Action is the foundational key to all success.",
+    "author": "Pablo Picasso",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Do something today that your future self will thank you for.",
+    "author": "Sean Patrick Flanery",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "It’s not the years in your life that count. It’s the life in your years.",
+    "author": "Abraham Lincoln",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Either you run the day or the day runs you.",
+    "author": "Jim Rohn",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Believe you can and you’re halfway there.",
+    "author": "Theodore Roosevelt",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Failure is success if we learn from it.",
+    "author": "Malcolm Forbes",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Life is 10% what happens to us and 90% how we react to it.",
+    "author": "Charles R. Swindoll",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Start where you are. Use what you have. Do what you can.",
+    "author": "Arthur Ashe",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "What we think, we become.",
+    "author": "Buddha",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Keep going. Everything you need will come to you at the perfect time.",
+    "author": "Unknown",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Success is not final; failure is not fatal.",
+    "author": "Winston Churchill",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "A person who never made a mistake never tried anything new.",
+    "author": "Albert Einstein",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Don’t let yesterday take up too much of today.",
+    "author": "Will Rogers",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Everything you’ve ever wanted is on the other side of fear.",
+    "author": "George Addair",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "I have not failed. I’ve just found 10,000 ways that won’t work.",
+    "author": "Thomas Edison",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "If you want to lift yourself up, lift up someone else.",
+    "author": "Booker T. Washington",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Don’t be pushed around by the fears in your mind.",
+    "author": "Roy T. Bennett",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Small deeds done are better than great deeds planned.",
+    "author": "Peter Marshall",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "We may encounter many defeats but we must not be defeated.",
+    "author": "Maya Angelou",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Be kind whenever possible. It is always possible.",
+    "author": "Dalai Lama",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "To succeed in life, you need two things: ignorance and confidence.",
+    "author": "Mark Twain",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The only limit to our realization of tomorrow will be our doubts of today.",
+    "author": "Franklin D. Roosevelt",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "You can, you should, and if you’re brave enough to start, you will.",
+    "author": "Stephen King",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "If at first you don’t succeed, try, try again.",
+    "author": "Thomas H. Palmer",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "It’s kind of fun to do the impossible.",
+    "author": "Walt Disney",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "If opportunity doesn’t knock, build a door.",
+    "author": "Milton Berle",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Fall seven times, stand up eight.",
+    "author": "Japanese Proverb",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "A journey of a thousand miles begins with a single step.",
+    "author": "Lao Tzu",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Never regret anything that made you smile.",
+    "author": "Mark Twain",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Die with memories, not dreams.",
+    "author": "Unknown",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "I can and I will. Watch me.",
+    "author": "Carrie Green (often credited)",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The only true wisdom is in knowing you know nothing.",
+    "author": "Socrates",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The unexamined life is not worth living.",
+    "author": "Socrates",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "He who has a why to live for can bear almost any how.",
+    "author": "Friedrich Nietzsche",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "That which does not kill us makes us stronger.",
+    "author": "Friedrich Nietzsche",
+    "category": "courage-strength",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+    "author": "Aristotle",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The roots of education are bitter, but the fruit is sweet.",
+    "author": "Aristotle",
+    "category": "growth-patience",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Waste no more time arguing about what a good man should be. Be one.",
+    "author": "Marcus Aurelius",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "You have power over your mind - not outside events. Realize this, and you will find strength.",
+    "author": "Marcus Aurelius",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The best revenge is to be unlike him who performed the injury.",
+    "author": "Marcus Aurelius",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The happiness of your life depends upon the quality of your thoughts.",
+    "author": "Marcus Aurelius",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Patience is bitter, but its fruit is sweet.",
+    "author": "Jean-Jacques Rousseau",
+    "category": "growth-patience",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Nature never deceives us; it is we who deceive ourselves.",
+    "author": "Jean-Jacques Rousseau",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The mind is its own place, and in itself can make a heaven of hell, a hell of heaven.",
+    "author": "John Milton",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The only thing we have to fear is fear itself.",
+    "author": "Franklin D. Roosevelt",
+    "category": "courage-strength",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
+    "author": "Martin Luther King Jr.",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Injustice anywhere is a threat to justice everywhere.",
+    "author": "Martin Luther King Jr.",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Our lives begin to end the day we become silent about things that matter.",
+    "author": "Martin Luther King Jr.",
+    "category": "courage-strength",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The time is always right to do what is right.",
+    "author": "Martin Luther King Jr.",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "If you can't fly then run, if you can't run then walk, if you can't walk then crawl, but whatever you do you have to keep moving forward.",
+    "author": "Martin Luther King Jr.",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Real knowledge is to know the extent of one's ignorance.",
+    "author": "Confucius",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "It does not matter how slowly you go as long as you do not stop.",
+    "author": "Confucius",
+    "category": "growth-patience",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Our greatest glory is not in never falling, but in rising every time we fall.",
+    "author": "Confucius",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Success depends upon previous preparation, and without such preparation there is sure to be failure.",
+    "author": "Confucius",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Knowing yourself is the beginning of all wisdom.",
+    "author": "Aristotle",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+    "author": "Thomas Edison",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "I hear and I forget. I see and I remember. I do and I understand.",
+    "author": "Confucius",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "No man is free who is not master of himself.",
+    "author": "Epictetus",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Men are disturbed not by things, but by the view which they take of them.",
+    "author": "Epictetus",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "It's not what happens to you, but how you react to it that matters.",
+    "author": "Epictetus",
+    "category": "resilience-failure",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "First say to yourself what you would be; and then do what you have to do.",
+    "author": "Epictetus",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Man is condemned to be free; because once thrown into the world, he is responsible for everything he does.",
+    "author": "Jean-Paul Sartre",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Life has no meaning a priori. It is up to you to give it a meaning.",
+    "author": "Jean-Paul Sartre",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Hell is other people.",
+    "author": "Jean-Paul Sartre",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "One cannot step twice into the same river.",
+    "author": "Heraclitus",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "There is nothing permanent except change.",
+    "author": "Heraclitus",
+    "category": "growth-patience",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Character is destiny.",
+    "author": "Heraclitus",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "I think therefore I am.",
+    "author": "René Descartes",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Divide each difficulty into as many parts as is feasible and necessary to resolve it.",
+    "author": "René Descartes",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The reading of all good books is like a conversation with the finest minds of past centuries.",
+    "author": "René Descartes",
+    "category": "growth-patience",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "If you would be a real seeker after truth, it is necessary that at least once in your life you doubt, as far as possible, all things.",
+    "author": "René Descartes",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "An unexamined life is not worth living.",
+    "author": "Socrates",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "The only thing I know is that I know nothing.",
+    "author": "Socrates",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "True freedom is impossible without a mind made free by discipline.",
+    "author": "Mortimer J. Adler",
+    "category": "courage-strength",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Freedom is the open window through which pours the sunlight of the human spirit and human dignity.",
+    "author": "Herbert Hoover",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "No tree, it is said, can grow to heaven unless its roots reach down to hell.",
+    "author": "Carl Jung",
+    "category": "growth-patience",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "I am not what happened to me, I am what I choose to become.",
+    "author": "Carl Jung",
+    "category": "identity-kindness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "You are what you do, not what you say you'll do.",
+    "author": "Carl Jung",
+    "category": "action-success",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Thinking is difficult, that’s why most people judge.",
+    "author": "Carl Jung",
+    "category": "mindset-belief",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Everything that irritates us about others can lead us to an understanding of ourselves.",
+    "author": "Carl Jung",
+    "category": "philosophy-wisdom",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  },
+  {
+    "quote": "Where love rules, there is no will to power, and where power predominates, love is lacking. The one is the shadow of the other.",
+    "author": "Carl Jung",
+    "category": "life-happiness",
+    "createdBy": "system",
+    "likedBy": [],
+    "adminApproved": true,
+    "createdAt": "2026-06-23T14:47:00.000Z",
+    "updatedAt": "2026-06-23T14:47:00.000Z"
+  }
+]
