@@ -2,12 +2,16 @@ import { ReactNode } from "react";
 import { Button } from "./ui/button";
 
 export interface ActionButtonInterface {
-  symbol: ReactNode,
-  counter: number,
-  onClick: () => void;  
+  symbol: ReactNode;
+  counter: number;
+  onClick: () => void;
 }
 
-export function ActionButton({ symbol, counter, onClick }: ActionButtonInterface) {
+export function ActionButton({
+  symbol,
+  counter,
+  onClick,
+}: ActionButtonInterface) {
   return (
     <div onClick={onClick} className=" p-1 w-fit">
       <Button
