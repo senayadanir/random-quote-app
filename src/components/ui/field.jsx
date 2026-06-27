@@ -156,7 +156,7 @@ function FieldSeparator({ children, className, ...props }) {
   );
 }
 
-function FieldError({ className = "", children = "", errors, ...props }) {
+function FieldError({ className = "", children, errors, ...props }) {
   const content = useMemo(() => {
     if (children) {
       return children;

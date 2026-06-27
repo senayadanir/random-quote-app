@@ -1,34 +1,18 @@
 "use server";
-
 import { auth0 } from "@/lib/auth0";
-import { AddNewQuoteState } from "./page";
+import {
+  NewQuoteInput,
+  TAddNewQuoteState,
+  newQuoteSchema,
+} from "@/types/quotes";
 // import { redirect } from "next/navigation";
 // import { NextResponse } from "next/server";
 import * as z from "zod";
 
-const NewQuote = z.object({
-  author: z
-    .string()
-    .trim()
-    .min(2, "Author name should be at least 2 characters long")
-    .max(
-      50,
-      "Author name should be less than 50 characters long. Please try a shorter name.",
-    ),
-  quote: z
-    .string()
-    .trim()
-    .min(5, "Quote should be at least 5 characters long")
-    .max(
-      300,
-      "Quote should be less than 300 characters long. Please try a shorter one.",
-    ),
-});
-
 export default async function addNewQuote(
-  currentState: AddNewQuoteState,
+  _currentState: TAddNewQuoteState,
   formData: FormData,
-) {
+): Promise<TAddNewQuoteState> {
   console.log("Action received in addNewQuote:", formData);
   const session = await auth0.getSession();
 
@@ -37,7 +21,6 @@ export default async function addNewQuote(
     return {
       success: false,
       message: "Please log in to add a quote.",
-      quote: formData,
     };
   }
 
@@ -49,11 +32,12 @@ export default async function addNewQuote(
   // );
 
   const rawData = {
-    author: formData.get("author"),
-    quote: formData.get("quote"),
+    author: formData.get("author")?.toString() ?? "",
+    quote: formData.get("quote")?.toString() ?? "",
+    category: formData.get("category")?.toString() ?? "",
   };
 
-  const validationOutput = NewQuote.safeParse(rawData);
+  const validationOutput = newQuoteSchema.safeParse(rawData);
 
   console.log("Validation output:", validationOutput);
 
@@ -64,13 +48,19 @@ export default async function addNewQuote(
     return {
       success: false,
       errors: validationErrors,
-      data: rawData,
+      message: " Please fix the errors above.",
+      data: {
+        author: rawData.author,
+        quote: rawData.quote,
+        category: rawData.category,
+      } as NewQuoteInput,
     };
   } else {
     // Return the updated state or any relevant information
     return {
       success: true,
-      data: validationOutput,
+      data: validationOutput.data,
+      message: "Quote added successfully!",
     };
   }
 }
