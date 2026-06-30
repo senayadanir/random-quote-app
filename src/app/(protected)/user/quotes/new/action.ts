@@ -1,22 +1,23 @@
 "use server";
 import { auth0 } from "@/lib/auth0";
+import { getDb, Collections } from "@/lib/db";
 import {
-  NewQuoteInput,
   TAddNewQuoteState,
+  TQuoteCategory,
   newQuoteSchema,
 } from "@/types/quotes";
-// import { redirect } from "next/navigation";
-// import { NextResponse } from "next/server";
 import * as z from "zod";
 
 export default async function addNewQuote(
   _currentState: TAddNewQuoteState,
   formData: FormData,
 ): Promise<TAddNewQuoteState> {
-  console.log("Action received in addNewQuote:", formData);
+  // console.log("Action received in addNewQuote:", formData);
   const session = await auth0.getSession();
+  const user = session?.user;
+  console.log("user", user);
 
-  if (!session) {
+  if (!session || !user) {
     // return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     return {
       success: false,
@@ -32,14 +33,16 @@ export default async function addNewQuote(
   // );
 
   const rawData = {
-    author: formData.get("author")?.toString() ?? "",
-    quote: formData.get("quote")?.toString() ?? "",
-    category: formData.get("category")?.toString() ?? "",
+    author: String(formData.get("author") ?? ""),
+    quote: String(formData.get("quote") ?? ""),
+    category: (formData.get("category")?.toString() ?? "") as
+      | TQuoteCategory
+      | "",
   };
 
   const validationOutput = newQuoteSchema.safeParse(rawData);
 
-  console.log("Validation output:", validationOutput);
+  // console.log("Validation output:", validationOutput);
 
   if (!validationOutput.success) {
     const validationErrors = z.flattenError(validationOutput.error);
@@ -48,15 +51,28 @@ export default async function addNewQuote(
     return {
       success: false,
       errors: validationErrors,
-      message: " Please fix the errors above.",
-      data: {
-        author: rawData.author,
-        quote: rawData.quote,
-        category: rawData.category,
-      } as NewQuoteInput,
+      message: " Please fix the errors below.",
+      data: rawData,
     };
   } else {
-    // Return the updated state or any relevant information
+    const db = await getDb();
+    const col = db.collection(Collections.quotes);
+    const currentDate = new Date();
+
+    const newQuote = {
+      quote: validationOutput.data.quote,
+      author: validationOutput.data.author,
+      category: validationOutput.data.category,
+      createdBy: user.sub,
+      likedBy: [],
+      adminApproved: false,
+      createdAt: currentDate,
+      updatedAt: currentDate,
+    };
+
+    const newDoc = await col.insertOne(newQuote);
+    console.log("newDoc", newDoc);
+
     return {
       success: true,
       data: validationOutput.data,

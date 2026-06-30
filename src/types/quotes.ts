@@ -24,6 +24,9 @@ export const newQuoteSchema = z.object({
       "mindset-belief",
       "life-happiness",
       "identity-kindness",
+      "philosophy-wisdom",
+      "growth-patience",
+      "courage-strength",
     ],
     {
       message: "Please select a valid category from the list.",
@@ -52,7 +55,10 @@ export type TQuoteCategory =
   | "resilience-failure"
   | "mindset-belief"
   | "life-happiness"
-  | "identity-kindness";
+  | "identity-kindness"
+  | "philosophy-wisdom"
+  | "growth-patience"
+  | "courage-strength";
 
 export interface NewQuoteInput {
   author: string;
@@ -61,8 +67,49 @@ export interface NewQuoteInput {
 }
 
 export interface TQuote {
+  _id: unknown;
   quote: string;
   author: string;
   category: TQuoteCategory;
   likedBy?: string[];
+  createdBy: string;
+  adminApproved: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
+
+export interface QuotesContextInterface {
+  quotes: TQuote[];
+  quoteIndex: number;
+  isLoading: boolean;
+  error: string | null;
+  handleQuoteIndexUpdate: () => void;
+  handleToggleLike: (targetIndex: number) => void;
+  handleDeleteQuote: (targetIndex: number) => Promise<boolean>;
+  handleEditQuote: (
+    targetIndex: number,
+    newQuote: string,
+    newAuthor: string,
+    newCategory: string,
+  ) => Promise<boolean>;
+  likedQuotes: TQuote[];
+}
+
+export interface PageProps {
+  searchParams: Promise<{
+    search?: string;
+    sort?: string;
+    page?: string;
+  }>;
+}
+
+export const categoryLabels: Record<string, string> = {
+  "action-success": "Action & Success",
+  "resilience-failure": "Resilience & Failure",
+  "mindset-belief": "Mindset & Belief",
+  "life-happiness": "Life & Happiness",
+  "identity-kindness": "Identity & Kindness",
+  "philosophy-wisdom": "Philosophy & Wisdom",
+  "growth-patience": "Growth & Patience",
+  "courage-strength": "Courage & Strength",
+};
