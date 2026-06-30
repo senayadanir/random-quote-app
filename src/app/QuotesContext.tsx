@@ -15,6 +15,8 @@ const InitialQuotesContext = {
   error: null,
   handleQuoteIndexUpdate: () => console.log(""),
   handleToggleLike: () => console.log(""),
+  handleDeleteQuote: async () => false,
+  handleEditQuote: async () => false,
   likedQuotes: [],
 };
 
@@ -105,6 +107,80 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
       setQuotes(previousQuotes);
     }
   }
+  async function handleDeleteQuote(targetIndex: number): Promise<boolean> {
+    const targetQuote = quotes[targetIndex];
+    const userId = user?.sub;
+
+    if (!userId || targetQuote.createdBy !== userId) {
+      return false;
+    }
+
+    const previousQuotes = [...quotes];
+    const updatedQuotes = quotes.filter((_, id) => id !== targetIndex);
+    setQuotes(updatedQuotes);
+    setQuoteIndex(0);
+
+    try {
+      const response = await fetch("/api/quotes/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quoteId: targetQuote._id }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
+      return true;
+    } catch (error) {
+      console.error("[DATABASE_QUOTE_DELETE_FAILURE]:", error);
+      setQuotes(previousQuotes);
+      setQuoteIndex(targetIndex);
+      return false;
+    }
+  }
+
+  async function handleEditQuote(
+    targetIndex: number,
+    newQuote: string,
+    newAuthor: string,
+    newCategory: string,
+  ): Promise<boolean> {
+    const targetQuote = quotes[targetIndex];
+    const userId = user?.sub;
+
+    if (!userId || targetQuote.createdBy !== userId) {
+      return false;
+    }
+
+    const previousQuotes = [...quotes];
+
+    const updatedQuotes = quotes.filter((_, id) => id !== targetIndex);
+    setQuotes(updatedQuotes);
+    setQuoteIndex(0);
+
+    try {
+      const response = await fetch("/api/quotes/edit", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          quoteId: targetQuote._id,
+          newQuote,
+          newAuthor,
+          newCategory,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
+      return true;
+    } catch (error) {
+      console.error("[DATABASE_QUOTE_EDIT_FAILURE]:", error);
+      setQuotes(previousQuotes);
+      setQuoteIndex(targetIndex);
+      return false;
+    }
+  }
 
   const likedQuotes = Array.isArray(quotes)
     ? quotes.filter((quote) => quote.likedBy?.includes(user?.sub ?? ""))
@@ -119,6 +195,8 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
         error,
         handleQuoteIndexUpdate,
         handleToggleLike,
+        handleDeleteQuote,
+        handleEditQuote,
         likedQuotes,
       }}
     >

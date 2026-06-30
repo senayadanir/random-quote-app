@@ -13,34 +13,34 @@ export async function POST(request: Request) {
     }
 
     const { quoteId } = await request.json();
-    if (!quoteId) {
+    if (!quoteId || !ObjectId.isValid(quoteId)) {
       return NextResponse.json(
-        { error: "Quote ID is required" },
+        { error: "Invalid or missing Quote ID" },
         { status: 400 },
       );
     }
 
     const db = await getDb();
     const col = db.collection(Collections.quotes);
+    const objId = new ObjectId(quoteId);
 
-    // 1. İlgili alıntıyı bul
-    const quote = await col.findOne({ _id: new ObjectId(quoteId) });
+    const quote = await col.findOne({ _id: objId });
     if (!quote) {
       return NextResponse.json({ error: "Quote not found" }, { status: 404 });
     }
-
-    const likedBy: string[] = quote.likedBy || [];
     const userId = user.sub;
+    const likedBy: string[] = quote.likedBy || [];
+    const isCurrentlyLiked = likedBy.includes(userId);
 
-    let updateQuery = likedBy.includes(userId)
+    let updateQuery: any = isCurrentlyLiked
       ? ({ $pull: { likedBy: userId } } as unknown as UpdateFilter<any>)
       : ({ $addToSet: { likedBy: userId } } as unknown as UpdateFilter<any>);
 
     // 2. MongoDB'yi güncelle
-    await col.updateOne({ _id: new ObjectId(quoteId) }, updateQuery);
+    await col.updateOne({ _id: objId }, updateQuery);
 
-    return NextResponse.json({ success: true });
-  } catch (error: any) {
+    return NextResponse.json({ success: true, isLiked: !isCurrentlyLiked });
+  } catch (error) {
     console.error("LIKE API ERROR:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

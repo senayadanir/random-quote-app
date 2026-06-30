@@ -2,7 +2,7 @@
 
 import { ModeToggle } from "../components/ui/mode-toggle";
 import Link from "next/link";
-
+import { Home, Heart, FileText, PlusCircle } from "lucide-react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 import {
@@ -18,11 +18,19 @@ const appRoots = [
     name: "Home",
     url: "/",
     protectedPage: false,
+    icon: Home,
   },
   {
     name: "My Favorites",
     url: "/user/quotes/liked",
     protectedPage: true,
+    icon: Heart,
+  },
+  {
+    name: "My Quotes",
+    url: "/user/quotes/my",
+    protectedPage: true,
+    icon: FileText,
   },
 ];
 

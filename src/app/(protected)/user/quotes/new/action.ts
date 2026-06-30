@@ -6,8 +6,6 @@ import {
   TQuoteCategory,
   newQuoteSchema,
 } from "@/types/quotes";
-// import { redirect } from "next/navigation";
-// import { NextResponse } from "next/server";
 import * as z from "zod";
 
 export default async function addNewQuote(

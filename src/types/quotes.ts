@@ -85,5 +85,31 @@ export interface QuotesContextInterface {
   error: string | null;
   handleQuoteIndexUpdate: () => void;
   handleToggleLike: (targetIndex: number) => void;
+  handleDeleteQuote: (targetIndex: number) => Promise<boolean>;
+  handleEditQuote: (
+    targetIndex: number,
+    newQuote: string,
+    newAuthor: string,
+    newCategory: string,
+  ) => Promise<boolean>;
   likedQuotes: TQuote[];
 }
+
+export interface PageProps {
+  searchParams: Promise<{
+    search?: string;
+    sort?: string;
+    page?: string;
+  }>;
+}
+
+export const categoryLabels: Record<string, string> = {
+  "action-success": "Action & Success",
+  "resilience-failure": "Resilience & Failure",
+  "mindset-belief": "Mindset & Belief",
+  "life-happiness": "Life & Happiness",
+  "identity-kindness": "Identity & Kindness",
+  "philosophy-wisdom": "Philosophy & Wisdom",
+  "growth-patience": "Growth & Patience",
+  "courage-strength": "Courage & Strength",
+};
