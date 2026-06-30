@@ -53,8 +53,8 @@ export function NavbarMenu() {
                     asChild
                     className={`${navigationMenuTriggerStyle()} font-semibold rounded-lg transition ease-in duration-200`}
                   >
-                    <Link href={url}>
-                      <Icon className="w-4 h-4" />
+                    <Link href={url} aria-label={name}>
+                      <Icon className="w-4 h-4" aria-hidden="true" />
                       <span className="hidden sm:block md:block xl:block 2xl:block">
                         {name}
                       </span>
@@ -69,8 +69,8 @@ export function NavbarMenu() {
                   asChild
                   className={`${navigationMenuTriggerStyle()} font-semibold rounded-lg transition ease-in duration-200 `}
                 >
-                  <Link href="/user/quotes/new">
-                    <PlusCircle className="w-4 h-4" />
+                  <Link href="/user/quotes/new" aria-label="Add New Quote">
+                    <PlusCircle className="w-4 h-4" aria-hidden="true" />
                     <span className="hidden sm:block md:block xl:block 2xl:block">
                       Add New Quote
                     </span>
@@ -87,9 +87,10 @@ export function NavbarMenu() {
           {!!user ? (
             <a
               href="/auth/logout"
+              aria-label="Log out"
               className={`${navigationMenuTriggerStyle()} font-semibold rounded-lg transition ease-in duration-200 text-muted-foreground hover:text-foreground hover:bg-accent`}
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-4 h-4" aria-hidden="true" />
               <span className="hidden sm:block md:block xl:block 2xl:block">
                 Log out
               </span>
@@ -97,9 +98,10 @@ export function NavbarMenu() {
           ) : (
             <a
               href="/auth/login"
+              aria-label="Login"
               className={`${navigationMenuTriggerStyle()} font-semibold rounded-lg transition ease-in duration-200 border-2 border-primary text-primary hover:opacity-90 active:scale-98`}
             >
-              <LogIn className="w-4 h-4" />
+              <LogIn className="w-4 h-4" aria-hidden="true" />
               <span className="hidden sm:block md:block xl:block 2xl:block">
                 Log in
               </span>
