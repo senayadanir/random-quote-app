@@ -36,7 +36,6 @@ export async function POST(request: Request) {
       ? ({ $pull: { likedBy: userId } } as unknown as UpdateFilter<any>)
       : ({ $addToSet: { likedBy: userId } } as unknown as UpdateFilter<any>);
 
-    // 2. MongoDB'yi güncelle
     await col.updateOne({ _id: objId }, updateQuery);
 
     return NextResponse.json({ success: true, isLiked: !isCurrentlyLiked });

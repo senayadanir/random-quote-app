@@ -90,7 +90,6 @@ export default function EditQuoteForm({ initialData }: EditQuoteFormProps) {
   };
 
   const categoryErrors = state.errors?.fieldErrors?.category;
-  // State'de veri varsa state'dekini, yoksa veritabanından gelen ilk değeri (initialData) baz alıyoruz
   const currentCategory = state.data?.category || initialData.category;
   const currentAuthor = state.data?.author || initialData.author;
   const currentQuote = state.data?.quote || initialData.quote;
@@ -146,7 +145,6 @@ export default function EditQuoteForm({ initialData }: EditQuoteFormProps) {
         className="w-full max-w-md bg-background border rounded-2xl p-10 shadow-md"
         action={handleClientValidation}
       >
-        {/* 🎯 Krtik Input: MongoDB ID'sini action'a gizlice taşır */}
         <input type="hidden" name="quoteId" value={initialData._id} />
 
         <FieldGroup>

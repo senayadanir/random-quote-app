@@ -72,7 +72,7 @@ export default function RootLayout({ children }) {
               />
               by
               <span className="font-semibold text-primary">
-                Random Quote App
+                {" Random Quote App "}
               </span>
               · {new Date().getFullYear()}
             </p>

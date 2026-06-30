@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
     } else if (sortBy === "category") {
       sortOptions = { category: 1 };
     } else {
-      sortOptions = { createdAt: -1 }; // En son beğenilen en üstte
+      sortOptions = { createdAt: -1 };
     }
 
     const [quotes, totalCount] = await Promise.all([
@@ -53,7 +53,6 @@ export async function GET(request: NextRequest) {
 
     const totalPages = Math.ceil(totalCount / limit);
 
-    // page.tsx'in tam olarak beklediği nesne yapısı:
     return NextResponse.json({
       success: true,
       quotes: quotes,

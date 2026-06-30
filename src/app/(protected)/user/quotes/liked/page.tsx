@@ -70,7 +70,6 @@ export default async function LikedQuotesPage({ searchParams }: PageProps) {
           </p>
         ) : favoritedQuotes.length > 0 ? (
           favoritedQuotes.map((quoteObj) => {
-            // ✨ BUG 1 & 2 ÇÖZÜMÜ: Tarih dönüşümünü tam olarak kartın maplendiği bu alanda yapıyoruz.
             const formattedDate = new Date(
               quoteObj.createdAt,
             ).toLocaleDateString("en-US", {
@@ -81,7 +80,7 @@ export default async function LikedQuotesPage({ searchParams }: PageProps) {
             return (
               <Card
                 key={String(quoteObj._id)}
-                className="w-full shadow-md border-l-4 border-red-500/40 rounded-xl overflow-hidden" // 🎯 size="lg" kaldırıldı, Tailwind eklendi
+                className="w-full shadow-md border-l-4 border-red-500/40 rounded-xl overflow-hidden"
               >
                 <CardContent className="flex flex-col gap-2 p-6">
                   <div className="flex justify-end">
