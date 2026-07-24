@@ -160,7 +160,7 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          quoteId: newQuote,
+          quote: newQuote,
           author: newAuthor,
           category: newCategory,
         }),
