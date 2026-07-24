@@ -1,14 +1,17 @@
 import { auth0 } from "@/lib/auth0";
-// import LoginButton from "@/components/LoginButton";
-// import LogoutButton from "@/components/LogoutButton";
 import { redirect, RedirectType } from "next/navigation";
+import { ReactNode } from "react";
 
-export default async function ProtectedLayout({ children }) {
+export default async function ProtectedLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const session = await auth0.getSession();
 
-  if (!session) redirect("/auth/login", RedirectType.replace);
+  if (!session || !session.user) redirect("/auth/login", RedirectType.replace);
 
-  const { user, error, loading } = await auth0.getSession();
+  const { user, error, loading } = session;
 
   if (loading) {
     return (
@@ -36,12 +39,4 @@ export default async function ProtectedLayout({ children }) {
   }
 
   return !!user ? <div>{children}</div> : <></>;
-  // if (user) {
-  //   return (
-  //     {children}
-
-  //   );
-  // } else {
-  //   return <></>;
-  // }
 }

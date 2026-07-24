@@ -1,24 +1,35 @@
 import { MongoClient, Db } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
-const dbName = process.env.MONGODB_DB;
+const dbName = process.env.MONGODB_DB || "random-quotes";
 
 if (!uri) {
   throw new Error("Missing MONGODB_URI in .env.local");
 }
 
-if (!dbName) {
-  throw new Error("Missing MONGODB_DB in .env.local");
-}
+let client: MongoClient;
+let clientPromise: Promise<MongoClient>;
 
-const client = new MongoClient(uri);
+if (process.env.NODE_ENV === "development") {
+  let globalWithMongo = global as typeof globalThis & {
+    _mongoClientPromise?: Promise<MongoClient>;
+  };
+
+  if (!globalWithMongo._mongoClientPromise) {
+    client = new MongoClient(uri);
+    globalWithMongo._mongoClientPromise = client.connect();
+  }
+  clientPromise = globalWithMongo._mongoClientPromise;
+} else {
+  client = new MongoClient(uri);
+  clientPromise = client.connect();
+}
 
 export async function getDb(): Promise<Db> {
-  await client.connect();
-  return client.db(dbName);
+  const connectedClient = await clientPromise;
+  return connectedClient.db(dbName);
 }
 
-export enum Collections {
-  quotes = "quotes",
-  users = "users",
-}
+export const Collections = {
+  quotes: "quotes",
+} as const;

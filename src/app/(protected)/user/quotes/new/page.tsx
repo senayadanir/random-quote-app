@@ -22,7 +22,7 @@ import {
 import addNewQuote from "@/app/(protected)/user/quotes/new/action";
 import { AlertCircle } from "lucide-react";
 import { redirect, RedirectType, useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   TAddNewQuoteState,
@@ -57,10 +57,17 @@ export default function CreateQuotePage() {
     register,
     reset,
     trigger,
+    control,
+    handleSubmit,
     formState: { errors: clientSideErrors },
   } = useForm<z.infer<typeof newQuoteSchema>>({
     mode: "onBlur",
     resolver: zodResolver(newQuoteSchema),
+    defaultValues: {
+      author: state.data?.author ?? "",
+      quote: state.data?.quote ?? "",
+      category: state.data?.category || undefined,
+    },
   });
 
   useEffect(() => {
@@ -68,19 +75,29 @@ export default function CreateQuotePage() {
       router.replace("./success");
     }
   }, [state.success, router]);
+
   // console.log("errors:", clientSideErrors);
 
-  const handleClientValidation = async (formData: FormData) => {
-    const isValid = await trigger();
-
-    if (!isValid) {
-      return;
-    }
-    // console.log("dispatchAction");
+  const onValidSubmit = handleSubmit((data: z.infer<typeof newQuoteSchema>) => {
+    const formData = new FormData();
+    formData.append("author", data.author);
+    formData.append("quote", data.quote);
+    formData.append("category", data.category);
 
     startTransition(() => {
       dispatchAction(formData);
     });
+  });
+
+  const handleClearForm = () => {
+    reset({ author: "", quote: "", category: undefined as any });
+    setResetCounter((prev) => prev + 1);
+
+    if (state) {
+      state.data = undefined;
+      state.errors = undefined;
+      state.message = undefined;
+    }
   };
 
   const categoryErrors = state.errors?.fieldErrors?.category;
@@ -107,24 +124,6 @@ export default function CreateQuotePage() {
       </div>
     );
   }
-  // if (state.success) return redirect("/user/quotes/new/success");
-
-  const handleAddNewQuote = () => {
-    redirect("./new/success", RedirectType.replace);
-  };
-
-  // console.log("Current state after action:", state);
-  const handleClearForm = () => {
-    reset();
-    formRef.current?.reset();
-    setResetCounter((prev) => prev + 1);
-
-    if (state) {
-      state.data = undefined;
-      state.errors = undefined;
-      state.message = undefined;
-    }
-  };
 
   return (
     <main className=" min-h-[calc(100vh-130px)] flex flex-col justify-center items-center">
@@ -138,7 +137,9 @@ export default function CreateQuotePage() {
       <form
         ref={formRef}
         className="w-full max-w-md bg-background border rounded-2xl p-10 shadow-md"
-        action={handleClientValidation}
+        onSubmit={onValidSubmit}
+        onReset={handleClearForm}
+        noValidate
       >
         <FieldGroup>
           <FieldSet>
@@ -160,22 +161,7 @@ export default function CreateQuotePage() {
                     !!state.errors?.fieldErrors?.author && "author-error"
                   }
                   defaultValue={state.data?.author || ""}
-                  {...register(
-                    "author",
-                    //   {
-                    //   required: "Author name is required",
-                    //   minLength: {
-                    //     value: 2,
-                    //     message:
-                    //       "Author name should be at least 2 characters long.",
-                    //   },
-                    //   maxLength: {
-                    //     value: 50,
-                    //     message:
-                    //       "Author name should be less than 50 characters long. Please try a shorter name.",
-                    //   },
-                    // } //Form validation without zod
-                  )}
+                  {...register("author")}
                 />
                 {clientSideErrors.author ? (
                   <FieldError
@@ -230,61 +216,71 @@ export default function CreateQuotePage() {
               </Field>
               <Field>
                 <FieldLabel htmlFor="category">Category</FieldLabel>
-                <Select
-                  key={categoryFieldKey}
+                <Controller
                   name="category"
-                  defaultValue={state.data?.category || undefined}
-                  onValueChange={(value) => {
-                    register("category").onChange({
-                      target: { name: "category", value },
-                    });
-                  }}
-                >
-                  <SelectTrigger
-                    id="category"
-                    aria-invalid={
-                      !!categoryErrors?.length || !!clientSideErrors.category
-                    }
-                    aria-describedby={
-                      clientSideErrors.category
-                        ? "client-category-error"
-                        : categoryErrors?.length
-                          ? "server-category-error"
-                          : undefined
-                    }
-                  >
-                    <SelectValue placeholder="Select a category" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="action-success">
-                        Action & Success
-                      </SelectItem>
-                      <SelectItem value="resilience-failure">
-                        Resilience & Failure
-                      </SelectItem>
-                      <SelectItem value="mindset-belief">
-                        Mindset & Belief
-                      </SelectItem>
-                      <SelectItem value="life-happiness">
-                        Life & Happiness
-                      </SelectItem>
-                      <SelectItem value="identity-kindness">
-                        Identity & Kindness
-                      </SelectItem>
-                      <SelectItem value="philosophy-wisdom">
-                        Philosophy & Wisdom
-                      </SelectItem>
-                      <SelectItem value="growth-patience">
-                        Growth & Patience
-                      </SelectItem>
-                      <SelectItem value="courage-strength">
-                        Courage & Strength
-                      </SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      key={categoryFieldKey}
+                      name={field.name}
+                      value={field.value || undefined}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        void trigger("category");
+                      }}
+                      onOpenChange={(open) => {
+                        if (!open) {
+                          void trigger("category");
+                        }
+                      }}
+                    >
+                      <SelectTrigger
+                        id="category"
+                        aria-invalid={
+                          !!categoryErrors?.length ||
+                          !!clientSideErrors.category
+                        }
+                        aria-describedby={
+                          clientSideErrors.category
+                            ? "client-category-error"
+                            : categoryErrors?.length
+                              ? "server-category-error"
+                              : undefined
+                        }
+                      >
+                        <SelectValue placeholder="Select a category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="action-success">
+                            Action & Success
+                          </SelectItem>
+                          <SelectItem value="resilience-failure">
+                            Resilience & Failure
+                          </SelectItem>
+                          <SelectItem value="mindset-belief">
+                            Mindset & Belief
+                          </SelectItem>
+                          <SelectItem value="life-happiness">
+                            Life & Happiness
+                          </SelectItem>
+                          <SelectItem value="identity-kindness">
+                            Identity & Kindness
+                          </SelectItem>
+                          <SelectItem value="philosophy-wisdom">
+                            Philosophy & Wisdom
+                          </SelectItem>
+                          <SelectItem value="growth-patience">
+                            Growth & Patience
+                          </SelectItem>
+                          <SelectItem value="courage-strength">
+                            Courage & Strength
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
                 {clientSideErrors.category ? (
                   <FieldError
                     id="client-category-error"
@@ -310,7 +306,7 @@ export default function CreateQuotePage() {
             className="flex justify-end gap-3 pt-4"
           >
             <Button type="submit">Create</Button>
-            <Button variant="outline" type="reset" onClick={handleClearForm}>
+            <Button variant="outline" type="reset">
               Clear
             </Button>
           </Field>

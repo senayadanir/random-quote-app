@@ -1,5 +1,10 @@
 import * as z from "zod";
 
+export interface RandomNumberBounds {
+  min: number;
+  max: number;
+}
+
 export const newQuoteSchema = z.object({
   author: z
     .string()
@@ -94,13 +99,21 @@ export interface QuotesContextInterface {
   ) => Promise<boolean>;
   likedQuotes: TQuote[];
 }
+export interface QuoteQueryParams {
+  search?: string;
+  sort?: string;
+  page?: string;
+}
 
 export interface PageProps {
-  searchParams: Promise<{
-    search?: string;
-    sort?: string;
-    page?: string;
-  }>;
+  searchParams: Promise<QuoteQueryParams>;
+}
+
+export interface GetMyQuotesParams {
+  userId: string;
+  search?: string;
+  sort?: string;
+  page?: string;
 }
 
 export const categoryLabels: Record<string, string> = {

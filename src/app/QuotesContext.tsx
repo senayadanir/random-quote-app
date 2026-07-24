@@ -1,12 +1,9 @@
 "use client";
 
 import { createContext, ReactNode, useEffect, useState } from "react";
-// import { quotes as initialQuotes } from "@/quotes";
 import { getRandomNumber } from "../utils/helper-functions";
-import { redirect } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { TQuote } from "@/types/quotes";
-import { QuotesContextInterface } from "@/types/quotes";
+import { TQuote, QuotesContextInterface } from "@/types/quotes";
 
 const InitialQuotesContext = {
   quotes: [],
@@ -28,18 +25,19 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [quotes, setQuotes] = useState<TQuote[]>([]); //initialQuotes in the beggining
+  const [quotes, setQuotes] = useState<TQuote[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("/api/quotes");
+        const response = await fetch(`/api/quotes`);
         if (!response.ok) {
           throw new Error("Failed to load quotes");
         }
 
         const data = await response.json();
-        setQuotes(data.quotes);
+        const quotesData = Array.isArray(data) ? data : data.quotes || [];
+        setQuotes(quotesData);
         setQuoteIndex(0);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load quotes");
@@ -72,9 +70,9 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
   async function handleToggleLike(targetIndex: number) {
     const targetQuote = quotes[targetIndex];
     const userId = user?.sub;
-    if (!userId) {
-      redirect("/auth/login");
-    }
+
+    if (!userId) return;
+    const quoteId = String(targetQuote._id);
     const previousQuotes = [...quotes];
     const updatedQuotes = quotes.map((quote, id) => {
       if (id === targetIndex) {
@@ -94,10 +92,8 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
     setQuotes(updatedQuotes);
 
     try {
-      const response = await fetch("/api/quotes/like", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ quoteId: targetQuote._id }),
+      const response = await fetch(`/api/quotes/${quoteId}`, {
+        method: "PATCH",
       });
       if (!response.ok) {
         throw new Error(`Server responded with status: ${response.status}`);
@@ -107,6 +103,7 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
       setQuotes(previousQuotes);
     }
   }
+
   async function handleDeleteQuote(targetIndex: number): Promise<boolean> {
     const targetQuote = quotes[targetIndex];
     const userId = user?.sub;
@@ -115,16 +112,15 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
       return false;
     }
 
+    const quoteId = String(targetQuote._id);
     const previousQuotes = [...quotes];
     const updatedQuotes = quotes.filter((_, id) => id !== targetIndex);
     setQuotes(updatedQuotes);
     setQuoteIndex(0);
 
     try {
-      const response = await fetch("/api/quotes/delete", {
+      const response = await fetch(`/api/quotes/${quoteId}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ quoteId: targetQuote._id }),
       });
 
       if (!response.ok) {
@@ -152,6 +148,7 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
       return false;
     }
 
+    const quoteId = String(targetQuote._id);
     const previousQuotes = [...quotes];
 
     const updatedQuotes = quotes.filter((_, id) => id !== targetIndex);
@@ -159,14 +156,13 @@ export function QuotesContextProvider({ children }: { children: ReactNode }) {
     setQuoteIndex(0);
 
     try {
-      const response = await fetch("/api/quotes/edit", {
+      const response = await fetch(`/api/quotes/${quoteId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          quoteId: targetQuote._id,
-          newQuote,
-          newAuthor,
-          newCategory,
+          quoteId: newQuote,
+          author: newAuthor,
+          category: newCategory,
         }),
       });
 

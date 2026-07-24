@@ -1,6 +1,4 @@
 import { auth0 } from "@/lib/auth0";
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import { QuoteFilters } from "@/components/QuoteFilters";
 import { QuotePagination } from "@/components/QuotePagination";
 import { H1 } from "../../../../../components/typography/H1";
@@ -8,48 +6,31 @@ import { H3 } from "../../../../../components/typography/H3";
 import { H6 } from "../../../../../components/typography/H6";
 import { Card, CardContent } from "../../../../../components/ui/card";
 import { Calendar, Heart } from "lucide-react";
-import { TQuote, PageProps, categoryLabels } from "@/types/quotes";
+import { TQuote, PageProps } from "@/types/quotes";
 import { LikedQuoteRow } from "./LikedQuoteRow";
+import { getLikedQuotes } from "@/app/services/db/quotes";
 
 export default async function LikedQuotesPage({ searchParams }: PageProps) {
-  const session = await auth0.getSession();
-  if (!session || !session.user) {
-    redirect("/auth/login");
-  }
-
   const resolvedParams = await searchParams;
   const search = resolvedParams.search || "";
   const sort = resolvedParams.sort || "createdAt";
   const page = resolvedParams.page || "1";
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const session = await auth0.getSession();
+  const userId = session?.user?.sub || "";
 
   let favoritedQuotes: TQuote[] = [];
   let pagination = { totalPages: 1, currentPage: 1, totalCount: 0 };
   let errorMsg = "";
 
   try {
-    const cookieStore = await cookies();
-    const res = await fetch(
-      `${baseUrl}/api/user/quotes/liked?search=${encodeURIComponent(search)}&sort=${sort}&page=${page}`,
-      {
-        headers: {
-          Cookie: cookieStore.toString(),
-        },
-        cache: "no-store",
-      },
-    );
+    const data = await getLikedQuotes({ userId, search, sort, page });
 
-    if (res.ok) {
-      const data = await res.json();
-      favoritedQuotes = data.quotes || [];
-      pagination = data.pagination || pagination;
-    } else {
-      errorMsg = "Failed to load your favorite quotes.";
-    }
+    favoritedQuotes = data.quotes as TQuote[];
+    pagination = data.pagination;
   } catch (error) {
     console.error("[LIKED_QUOTES_PAGE_ERROR]:", error);
-    errorMsg = "An unexpected error occurred.";
+    errorMsg = "Failed to load your favorite quotes. Please try again later.";
   }
 
   return (

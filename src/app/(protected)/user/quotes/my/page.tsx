@@ -1,6 +1,3 @@
-import { auth0 } from "@/lib/auth0";
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import { QuoteFilters } from "@/components/QuoteFilters";
 import { QuotePagination } from "@/components/QuotePagination";
 import { H1 } from "@/components/typography/H1";
@@ -8,54 +5,35 @@ import { H3 } from "@/components/typography/H3";
 import { H6 } from "@/components/typography/H6";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  Pencil,
-  Trash2,
-  ShieldAlert,
-  ShieldCheck,
-  Calendar,
-} from "lucide-react";
+import { Pencil, ShieldAlert, ShieldCheck, Calendar } from "lucide-react";
 import { TQuote, PageProps, categoryLabels } from "@/types/quotes";
 import Link from "next/link";
 import { MyQuoteDeleteButton } from "@/components/MyQuoteDeleteButton";
+import { getMyQuotes } from "@/app/services/db/quotes";
+import { auth0 } from "@/lib/auth0";
 
 export default async function MyQuotesPage({ searchParams }: PageProps) {
-  const session = await auth0.getSession();
-  if (!session || !session.user) {
-    redirect("/auth/login");
-  }
-
   const resolvedParams = await searchParams;
   const search = resolvedParams.search || "";
   const sort = resolvedParams.sort || "createdAt";
   const page = resolvedParams.page || "1";
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const session = await auth0.getSession();
+  const userId = session?.user?.sub || "";
 
   let myQuotes: TQuote[] = [];
   let pagination = { totalPages: 1, currentPage: 1, totalCount: 0 };
   let errorMsg = "";
 
   try {
-    const cookieStore = await cookies();
-    const res = await fetch(
-      `${baseUrl}/api/user/quotes/my?search=${encodeURIComponent(search)}&sort=${sort}&page=${page}`,
-      {
-        headers: {
-          Cookie: cookieStore.toString(),
-        },
-      },
-    );
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch your quotes");
-    }
-
-    const data = await res.json();
-    if (data.success) {
-      myQuotes = data.quotes;
-      pagination = data.pagination;
-    }
+    const data = await getMyQuotes({
+      userId,
+      search,
+      sort,
+      page,
+    });
+    myQuotes = data.quotes as TQuote[];
+    pagination = data.pagination;
   } catch (error) {
     errorMsg = "Failed to load your quotes. Please try again later.";
   }
