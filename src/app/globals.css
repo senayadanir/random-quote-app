@@ -15,6 +15,14 @@
   --color-background-2: var(--background-2);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
+  --color-cat-success: var(--cat-success);
+  --color-cat-resilience: var(--cat-resilience);
+  --color-cat-mindset: var(--cat-mindset);
+  --color-cat-life: var(--cat-life);
+  --color-cat-love: var(--cat-love);
+  --color-cat-philosophy: var(--cat-philosophy);
+  --color-cat-growth: var(--cat-growth);
+  --color-cat-courage: var(--cat-courage);
   --font-mono: var(--font-geist-mono);
   --font-inter: var(--font-inter);
   --font-nunito: var(--font-nunito);
@@ -77,6 +85,14 @@
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.963 0.002 197.1);
   --muted-foreground: oklch(0.56 0.021 213.5);
+  --cat-success: #059669;
+  --cat-resilience: #d97706;
+  --cat-mindset: #7c3aed;
+  --cat-life: #16a34a;
+  --cat-love: #db2777;
+  --cat-philosophy: #4f46e5;
+  --cat-growth: #0d9488;
+  --cat-courage: #dc2626;
   --accent: oklch(0.963 0.002 197.1);
   --accent-foreground: oklch(0.218 0.008 223.9);
   --destructive: oklch(0.627 0.265 25.68);
@@ -115,6 +131,14 @@
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.275 0.011 216.9);
   --muted-foreground: oklch(0.723 0.014 214.4);
+  --cat-success: #34d399;
+  --cat-resilience: #fbbf24;
+  --cat-mindset: #a78bfa;
+  --cat-life: #4ade80;
+  --cat-love: #f472b6;
+  --cat-philosophy: #818cf8;
+  --cat-growth: #2dd4bf;
+  --cat-courage: #f87171;
   --accent: oklch(0.275 0.011 216.9);
   --accent-foreground: oklch(0.987 0.002 197.1);
   --destructive: oklch(0.65 0.21 25);
@@ -147,5 +171,30 @@
   }
   html {
     @apply font-inter;
+  }
+
+  .pill-action-success {
+    @apply bg-cat-success/10 text-cat-success border-cat-success/20;
+  }
+  .pill-resilience-failure {
+    @apply bg-cat-resilience/10 text-cat-resilience border-cat-resilience/20;
+  }
+  .pill-mindset-belief {
+    @apply bg-cat-mindset/10 text-cat-mindset border-cat-mindset/20;
+  }
+  .pill-life-happiness {
+    @apply bg-cat-life/10 text-cat-life border-cat-life/20;
+  }
+  .pill-identity-kindness {
+    @apply bg-cat-love/10 text-cat-love border-cat-love/20;
+  }
+  .pill-philosophy-wisdom {
+    @apply bg-cat-philosophy/10 text-cat-philosophy border-cat-philosophy/20;
+  }
+  .pill-growth-patience {
+    @apply bg-cat-growth/10 text-cat-growth border-cat-growth/20;
+  }
+  .pill-courage-strength {
+    @apply bg-cat-courage/10 text-cat-courage border-cat-courage/20;
   }
 }
