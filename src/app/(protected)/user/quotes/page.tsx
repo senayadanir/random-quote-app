@@ -5,7 +5,8 @@ import { QuotePagination } from "@/components/QuotePagination";
 import { Card, CardContent } from "@/components/ui/card";
 import { H3 } from "@/components/typography/H3";
 import { H6 } from "@/components/typography/H6";
-import { TQuote, PageProps } from "@/types/quotes";
+import { TQuote, PageProps, TQuoteCategory } from "@/types/quotes";
+import { getMyQuotes } from "@/app/services/db/quotes";
 
 export default async function MyQuotesPage({ searchParams }: PageProps) {
   const session = await auth0.getSession();
@@ -13,41 +14,36 @@ export default async function MyQuotesPage({ searchParams }: PageProps) {
     redirect("/auth/login");
   }
 
+  const userId = session.user.sub;
   const resolvedParams = await searchParams;
   const search = resolvedParams.search || "";
   const sort = resolvedParams.sort || "createdAt";
   const page = resolvedParams.page || "1";
-
-  const baseUrl =
-    process.env.NEXT_PUBLIC_APP_URL ||
-    "http://localhost:3000" ||
-    "http://localhost:3001";
 
   let quotes: TQuote[] = [];
   let pagination = { totalPages: 1, currentPage: 1, totalCount: 0 };
   let errorMsg = "";
 
   try {
-    const res = await fetch(
-      `${baseUrl}/api/user/quotes?search=${encodeURIComponent(search)}&sort=${sort}&page=${page}`,
-      {
-        headers: {
-          Cookie: (await import("next/headers")).cookies().toString(),
-        },
-        cache: "no-store",
-      },
-    );
+    const { quotes: rawQuotes, pagination: fetchedPagination } =
+      await getMyQuotes({
+        userId,
+        search,
+        sort,
+        page,
+      });
 
-    if (res.ok) {
-      const data = await res.json();
-      quotes = data.quotes || [];
-      pagination = data.pagination || pagination;
-    } else {
-      errorMsg = "Failed to load your quotes. Please try again later.";
-    }
+    quotes = rawQuotes.map((quote) => ({
+      ...quote,
+      category: quote.category as TQuoteCategory,
+      createdAt: new Date(quote.createdAt).toISOString(),
+      updatedAt: new Date(quote.updatedAt).toISOString(),
+    }));
+
+    pagination = fetchedPagination;
   } catch (error) {
     console.error("[MY_QUOTES_PAGE_FETCH_ERROR]:", error);
-    errorMsg = "An unexpected error occurred.";
+    errorMsg = "Failed to load your quotes. Please try again later.";
   }
 
   return (

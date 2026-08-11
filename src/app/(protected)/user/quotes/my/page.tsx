@@ -6,7 +6,12 @@ import { H6 } from "@/components/typography/H6";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pencil, ShieldAlert, ShieldCheck, Calendar } from "lucide-react";
-import { TQuote, PageProps, categoryLabels } from "@/types/quotes";
+import {
+  TQuote,
+  PageProps,
+  categoryLabels,
+  TQuoteCategory,
+} from "@/types/quotes";
 import Link from "next/link";
 import { MyQuoteDeleteButton } from "@/components/MyQuoteDeleteButton";
 import { getMyQuotes } from "@/app/services/db/quotes";
@@ -26,14 +31,21 @@ export default async function MyQuotesPage({ searchParams }: PageProps) {
   let errorMsg = "";
 
   try {
-    const data = await getMyQuotes({
+    const { quotes, pagination: fetchedPagination } = await getMyQuotes({
       userId,
       search,
       sort,
       page,
     });
-    myQuotes = data.quotes as TQuote[];
-    pagination = data.pagination;
+    const formattedQuotes: TQuote[] = quotes.map((quote) => ({
+      ...quote,
+      category: quote.category as TQuoteCategory,
+      createdAt: new Date(quote.createdAt).toISOString(),
+      updatedAt: new Date(quote.updatedAt).toISOString(),
+    }));
+
+    myQuotes = formattedQuotes;
+    pagination = fetchedPagination;
   } catch (error) {
     errorMsg = "Failed to load your quotes. Please try again later.";
   }

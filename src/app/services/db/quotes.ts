@@ -1,55 +1,48 @@
 import { getDb, Collections } from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 import {
   GetMyQuotesParams,
-  TQuote,
   QuoteQueryParams,
   TQuoteCategory,
 } from "@/types/quotes";
-import { ObjectId, UpdateFilter } from "mongodb";
 
 async function fetchPaginatedQuotes(
   baseQuery: any,
   { search = "", sort = "createdAt", page = "1" }: QuoteQueryParams,
 ) {
-  const db = await getDb();
-  if (!db) throw new Error("Database connection failed");
-
-  const col = db.collection<TQuote>(Collections.quotes); // 1. Tanımlama (Başka yok)
-  const query = { ...baseQuery };
-
-  if (search) {
-    query.$or = [
-      { quote: { $regex: search, $options: "i" } },
-      { author: { $regex: search, $options: "i" } },
-    ];
-  }
-
-  const sortObj: any = {};
-  if (sort === "createdAt") {
-    sortObj.createdAt = -1;
-  } else {
-    sortObj[sort] = 1;
-  }
-
   const limit = 5;
   const pageNum = parseInt(page, 10) || 1;
   const skip = (pageNum - 1) * limit;
 
-  const totalCount = await col.countDocuments(query);
-  const rawQuotes = await col
-    .find(query)
-    .sort(sortObj)
-    .skip(skip)
-    .limit(limit)
-    .toArray();
+  const where: any = {
+    ...baseQuery,
+    ...(search
+      ? {
+          OR: [
+            { quote: { contains: search, mode: "insensitive" } },
+            { author: { contains: search, mode: "insensitive" } },
+          ],
+        }
+      : {}),
+  };
 
-  const quotes = rawQuotes.map((quote) => ({
-    ...quote,
-    _id: String(quote._id),
-  }));
+  const orderBy =
+    sort === "createdAt"
+      ? { createdAt: "desc" as const }
+      : { [sort]: "asc" as const };
+
+  const [rawQuotes, totalCount] = await Promise.all([
+    prisma.quote.findMany({
+      where,
+      orderBy,
+      skip,
+      take: limit,
+    }),
+    prisma.quote.count({ where }),
+  ]);
 
   return {
-    quotes,
+    quotes: rawQuotes,
     pagination: {
       totalPages: Math.ceil(totalCount / limit) || 1,
       currentPage: pageNum,
@@ -59,45 +52,30 @@ async function fetchPaginatedQuotes(
 }
 
 export async function getApprovedQuotes() {
-  const db = await getDb();
-  if (!db) {
-    throw new Error("Database connection could not be established.");
-  }
-
-  const col = db.collection<TQuote>(Collections.quotes);
-  const query = { adminApproved: true };
-  const rawQuotes = await col.find(query).toArray();
-
-  return rawQuotes.map((quote) => ({
-    ...quote,
-    _id: quote._id ? String(quote._id) : null,
-  }));
+  return await prisma.quote.findMany({
+    where: { adminApproved: true },
+    orderBy: { createdAt: "desc" },
+  });
 }
 
 export async function toggleQuoteLike(quoteId: string, userId: string) {
-  if (!ObjectId.isValid(quoteId)) {
-    return null;
-  }
+  const quote = await prisma.quote.findUnique({
+    where: { id: quoteId },
+  });
 
-  const db = await getDb();
-  if (!db) throw new Error("Database connection failed");
-
-  const col = db.collection(Collections.quotes);
-  const objId = new ObjectId(quoteId);
-
-  const quote = await col.findOne({ _id: objId });
-  if (!quote) {
-    return null;
-  }
+  if (!quote) return null;
 
   const likedBy: string[] = quote.likedBy || [];
   const isCurrentlyLiked = likedBy.includes(userId);
 
-  const updateQuery: any = isCurrentlyLiked
-    ? ({ $pull: { likedBy: userId } } as unknown as UpdateFilter<any>)
-    : ({ $addToSet: { likedBy: userId } } as unknown as UpdateFilter<any>);
+  const updatedLikedBy: any = isCurrentlyLiked
+    ? likedBy.filter((id) => id !== userId)
+    : [...likedBy, userId];
 
-  await col.updateOne({ _id: objId }, updateQuery);
+  await prisma.quote.update({
+    where: { id: quoteId },
+    data: { likedBy: updatedLikedBy },
+  });
 
   return {
     success: true,
@@ -106,17 +84,11 @@ export async function toggleQuoteLike(quoteId: string, userId: string) {
 }
 
 export async function getQuoteForEdit(quoteId: string, userId: string) {
-  if (!ObjectId.isValid(quoteId)) {
-    return null;
-  }
-
-  const db = await getDb();
-  if (!db) throw new Error("Database connection failed");
-
-  const collection = db.collection(Collections.quotes); // İsmi tamamen farklı
-  const quoteDoc = await collection.findOne({
-    _id: new ObjectId(quoteId),
-    createdBy: userId,
+  const quoteDoc = await prisma.quote.findFirst({
+    where: {
+      id: quoteId,
+      createdBy: userId,
+    },
   });
 
   if (!quoteDoc) {
@@ -124,7 +96,7 @@ export async function getQuoteForEdit(quoteId: string, userId: string) {
   }
 
   return {
-    _id: String(quoteDoc._id),
+    _id: quoteDoc.id,
     quote: quoteDoc.quote,
     author: quoteDoc.author,
     category: quoteDoc.category,
@@ -142,7 +114,7 @@ export async function getLikedQuotes({
   userId,
   ...restParams
 }: GetMyQuotesParams) {
-  return fetchPaginatedQuotes({ likedBy: userId }, restParams);
+  return fetchPaginatedQuotes({ likedBy: { has: userId } }, restParams);
 }
 
 export async function updateQuote(
@@ -150,38 +122,20 @@ export async function updateQuote(
   userId: string,
   updateData: { quote: string; author: string; category: TQuoteCategory },
 ) {
-  if (!ObjectId.isValid(quoteId)) {
-    throw new Error("Invalid Quote ID format");
-  }
-
-  const db = await getDb();
-  if (!db) throw new Error("Database connection failed");
-
-  const col = db.collection(Collections.quotes);
-  return await col.updateOne(
-    { _id: new ObjectId(quoteId), createdBy: userId },
-    {
-      $set: {
-        ...updateData,
-        adminApproved: false,
-        updatedAt: new Date().toISOString(),
-      },
+  return await prisma.quote.updateMany({
+    where: { id: quoteId, createdBy: userId },
+    data: {
+      ...updateData,
+      adminApproved: false,
     },
-  );
+  });
 }
 
 export async function deleteQuote(quoteId: string, userId: string) {
-  if (!ObjectId.isValid(quoteId)) {
-    return null;
-  }
-
-  const db = await getDb();
-  if (!db) throw new Error("Database connection failed");
-
-  const col = db.collection(Collections.quotes);
-
-  return await col.deleteOne({
-    _id: new ObjectId(quoteId),
-    createdBy: userId,
+  return await prisma.quote.deleteMany({
+    where: {
+      _id: quoteId,
+      createdBy: userId,
+    },
   });
 }
