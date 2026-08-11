@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { Quote as PrismaQuote } from "@prisma/client";
 
 export interface RandomNumberBounds {
   min: number;
@@ -71,17 +72,16 @@ export interface NewQuoteInput {
   category: TQuoteCategory | "";
 }
 
-export interface TQuote {
-  _id: unknown;
-  quote: string;
-  author: string;
+export type TQuote = Omit<
+  PrismaQuote,
+  "createdAt" | "updatedAt" | "category" | "id"
+> & {
+  _id?: string;
+  id: string;
   category: TQuoteCategory;
-  likedBy?: string[];
-  createdBy: string;
-  adminApproved: boolean;
   createdAt: string;
   updatedAt: string;
-}
+};
 
 export interface QuotesContextInterface {
   quotes: TQuote[];

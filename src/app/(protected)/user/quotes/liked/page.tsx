@@ -6,7 +6,7 @@ import { H3 } from "../../../../../components/typography/H3";
 import { H6 } from "../../../../../components/typography/H6";
 import { Card, CardContent } from "../../../../../components/ui/card";
 import { Calendar, Heart } from "lucide-react";
-import { TQuote, PageProps } from "@/types/quotes";
+import { TQuote, PageProps, TQuoteCategory } from "@/types/quotes";
 import { LikedQuoteRow } from "./LikedQuoteRow";
 import { getLikedQuotes } from "@/app/services/db/quotes";
 
@@ -24,10 +24,22 @@ export default async function LikedQuotesPage({ searchParams }: PageProps) {
   let errorMsg = "";
 
   try {
-    const data = await getLikedQuotes({ userId, search, sort, page });
+    const { quotes, pagination: fetchedPagination } = await getLikedQuotes({
+      userId,
+      search,
+      sort,
+      page,
+    });
 
-    favoritedQuotes = data.quotes as TQuote[];
-    pagination = data.pagination;
+    const formattedQuotes: TQuote[] = quotes.map((quote) => ({
+      ...quote,
+      category: quote.category as TQuoteCategory,
+      createdAt: new Date(quote.createdAt).toISOString(),
+      updatedAt: new Date(quote.updatedAt).toISOString(),
+    }));
+
+    favoritedQuotes = formattedQuotes;
+    pagination = fetchedPagination;
   } catch (error) {
     console.error("[LIKED_QUOTES_PAGE_ERROR]:", error);
     errorMsg = "Failed to load your favorite quotes. Please try again later.";
